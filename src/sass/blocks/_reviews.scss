@@ -1,0 +1,39 @@
+.reviews {
+    padding: 80px 0px 50px 0px;
+    background-color:#fff;
+    &__people {
+        margin-top: 60px;
+    }
+    &__person {
+        margin-top: 60px;
+        width: 915px;
+        display: flex;
+        justify-content: space-between;
+        &__img {
+            width: 170px;
+            height: 170px;
+        }
+        &__text {
+            width: 680px;
+            &-name {
+                color: #0D0D0D;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            &-achievements {
+                margin-top: -5px;
+                color: #646464;
+                font-weight: 500;
+                font-size: 14px;
+            }
+            &-descr {
+                margin-top: 10px;
+                color: #0D0D0D;
+                font-weight: 300;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+        
+}
