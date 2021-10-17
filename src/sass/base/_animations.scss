@@ -1,0 +1,14 @@
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+//@keyframes - команда для анимации 
+// Также вместо 0% и 100% можно использовать from и to соответственно 

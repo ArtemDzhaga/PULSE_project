@@ -95,12 +95,12 @@ $(document).ready(function(){
 
     //Modal
 
-    $('[data-modal=consultation]').on('click', function(){
+    $('[data-modal=consultation]').on('click', function() {
       $('.overlay, #consultation').fadeIn('slow');
     });
 
     $('.modal__close').on('click', function(){
-      $('.overlay, #consultation #order, #thanks').fadeOut('slow');
+      $('.overlay, #consultation, #order, #thanks').fadeOut('slow');
     });
 
     /* $('.button_mini').on('click', function(){
@@ -121,7 +121,10 @@ $(document).ready(function(){
           required: true,
           minlength: 2
         },
-        phone: "required",
+        phone: {
+          required: true,
+          minlength: 10
+        },
         email: {
           required: true,
           email: true
@@ -135,7 +138,7 @@ $(document).ready(function(){
         phone: "Пожалуйста, введите свой телефон",
         email: {
           required: "Пожалуйста, введите свою почту",
-          email: "Неправильно введен адресс почты"
+          email: "Неправильно введен адрес почты"
         }
       }
     });
@@ -146,6 +149,40 @@ $(document).ready(function(){
   validateForms('#order form');
 
   $('input[name=phone]').mask("+7 (999) 999-99-99");
+
+  $('form').submit(function(e) {
+    e.preventDefault();
+    /*позволяет отменить стандартное поведение браузера*/
+    $.ajax({
+      type: "POST",
+      url: "mailer/smart.php",
+      data: $(this).serialize()
+    }).done(function() {
+      $(this).find("input").val("");
+      $('#consultation, #order').fadeOut('slow');
+      $('.overlay, #thanks').fadeIn('slow');
+
+      $('form').trigger('reset');
+    });
+    return false;
+  });
+
+  //Smooth scroll and pageup
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 600) {
+       $('.pageup').fadeIn();
+    } else {
+      $('.pageup').fadeOut();
+    }
+
+    $("a[href^=#up]").click(function(){
+      const _href = $(this).attr("href");
+      $("html, body").animate({scrollTop: $(_href).offset().top+"px"});
+      return false;
+  });
+  });
+
+  new WOW().init();
 });
 /* 1я обертка отвечатет за то, чтобы слайдер загружался, когда наш документ только полностью готов
 $ - это и есть библиотека jquary*/

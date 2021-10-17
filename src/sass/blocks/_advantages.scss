@@ -20,6 +20,16 @@
         img {
             margin-bottom: 35px;
         }
+        &_animated {
+            animation: heartbeat 2s ease infinite;
+                &:hover{
+                    animation-play-state: paused;
+                }
+            /* animation-name: heartbeat;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite; */
+        }
     }
     &__subheader {
         font-style: normal;
